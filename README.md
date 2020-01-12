@@ -24,7 +24,7 @@ which will save a image from the camera in your current directory. You can open 
 
 ## Installing Dependencies
 
-This project uses openCV to detect objects in the video feed. You can install openCV by using the following [tutorial](http://www.pyimagesearch.com/2016/04/18/install-guide-raspberry-pi-3-raspbian-jessie-opencv-3/). I used the Python 2.7 version of the tutorial.
+This project uses openCV to detect objects in the video feed. You can install openCV by using the following [tutorial](https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/). I used the Python 3 version of the tutorial. Also i recommend installing it using pip rather than compiling from source as it takes a heck lot of time.
 
 The installation took almost 8 hours (!!) on my Raspberry Pi Zero, but it would be considerably faster on a more powerful board like the Raspberry Pi 3.
 
@@ -47,26 +47,19 @@ and install the dependencies for the project
 pip install -r requirements.txt
 ```
 
-*Note: If you're running python3, you'll have to change the import statements at the top of the mail.py file*
-
-```
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-```
-*and change your print statements from quotes to parenthesis*
-
-```
-print "" => print()
-```
 
 ## Customization
 
-To get emails when objects are detected, you'll need to make a couple modifications to the `mail.py` file.
+To get emails when objects are detected, you'll need to make a couple modifications to the `credentials.py` file.
 
-Open `mail.py` with vim `vim mail.py`, then press `i` to edit. Scroll down to the following section
+Open `credentials.py` with nano `nano mail.py`, then edit it. 
 
 ```
+# Basic auth credentials
+BASIC_AUTH_USERNAME = 'CHANGE_ME_USERNAME'
+BASIC_AUTH_PASSWORD = 'CHANGE_ME_PLEASE'
+BASIC_AUTH_FORCE = True
+
 # Email you want to send the update from (only works with gmail)
 fromEmail = 'myemail@gmail.com'
 fromEmailPassword = 'password1234'
@@ -74,9 +67,9 @@ fromEmailPassword = 'password1234'
 # Email you want to send the update to
 toEmail = 'anotheremail@gmail.com'
 ```
-and replace with your own email/credentials. The `mail.py` file logs into a gmail SMTP server and sends an email with an image of the object detected by the security camera. 
+and replace with your own email/credentials. Save with `ctrl + x` then press `y` to save. The `mail.py` file logs into a gmail SMTP server and sends an email with an image of the object detected by the security camera. 
 
-Press `esc` then `ZZ` to save and exit.
+
 
 You can also modify the `main.py` file to change some other properties.
 
