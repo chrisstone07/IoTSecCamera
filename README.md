@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 To get emails when objects are detected, you'll need to make a couple modifications to the `credentials.py` file.
 
-Open `credentials.py` with nano `nano mail.py`, then edit it. 
+Open `credentials.py` with nano `nano credentials.py`, then edit it. 
 
 ```
 # Basic auth credentials
