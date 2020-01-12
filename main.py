@@ -5,7 +5,9 @@ from flask import Flask, render_template, Response
 from camera import VideoCamera
 from flask_basicauth import BasicAuth
 import time
-import threading
+#import threading
+import multiprocessing
+import credentials as creds
 
 email_update_interval = 600 # sends an email only once in this time interval
 video_camera = VideoCamera(flip=True) # creates a camera object, flip vertically
@@ -13,9 +15,9 @@ object_classifier = cv2.CascadeClassifier("models/fullbody_recognition_model.xml
 
 # App Globals (do not edit)
 app = Flask(__name__)
-app.config['BASIC_AUTH_USERNAME'] = 'CHANGE_ME_USERNAME'
-app.config['BASIC_AUTH_PASSWORD'] = 'CHANGE_ME_PLEASE'
-app.config['BASIC_AUTH_FORCE'] = True
+app.config['BASIC_AUTH_USERNAME'] = creds.BASIC_AUTH_USERNAME
+app.config['BASIC_AUTH_PASSWORD'] = creds.BASIC_AUTH_PASSWORD
+app.config['BASIC_AUTH_FORCE'] = creds.BASIC_AUTH_FORCE
 
 basic_auth = BasicAuth(app)
 last_epoch = 0
@@ -50,7 +52,12 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    t = threading.Thread(target=check_for_objects, args=())
-    t.daemon = True
-    t.start()
+    # t = threading.Thread(target=check_for_objects, args=())
+    # t.daemon = True
+    # t.start()
+
+    d = multiprocessing.Process(name='daemon', target=check_for_objects)
+    d.daemon = True
+    d.start()
     app.run(host='0.0.0.0', debug=False)
+

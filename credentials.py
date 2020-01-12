@@ -1,0 +1,8 @@
+
+BASIC_AUTH_USERNAME = 'CHANGE_ME_USERNAME'
+BASIC_AUTH_PASSWORD = 'CHANGE_ME_PLEASE'
+BASIC_AUTH_FORCE = True
+
+fromEmail = ''
+fromEmailPassword = ''
+toEmail = ''
