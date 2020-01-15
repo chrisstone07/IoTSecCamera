@@ -8,13 +8,12 @@ import datetime
 
 class VideoCamera(object):
 
-    avg = None
-
     def __init__(self, flip = False):
         # self.vs = VideoStream() # Uncomment this line and comment the next line to use usb camera or built in camera's (Laptops)
         self.vs = PiVideoStream(resolution=(720, 720)).start() # Change resolution as per need
         self.flip = flip
         time.sleep(2.0)
+        self.avg = None
 
     def __del__(self):
         self.vs.stop()
@@ -62,15 +61,15 @@ class VideoCamera(object):
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
 
         # if the average frame is None, initialize it
-        if avg is None:
+        if self.avg is None:
             print("[INFO] starting background model...")
-            avg = gray.copy().astype("float")
+            self.avg = gray.copy().astype("float")
 
         # accumulate the weighted average between the current frame and
         # previous frames, then compute the difference between the current
         # frame and running average
-        cv2.accumulateWeighted(gray, avg, 0.5)
-        frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(avg))
+        cv2.accumulateWeighted(gray, self.avg, 0.5)
+        frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(self.avg))
 
         # threshold the delta image, dilate the thresholded image to fill
         # in holes, then find contours on thresholded image

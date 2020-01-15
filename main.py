@@ -35,8 +35,8 @@ def check_for_objects():
 				print("Sending email...")
 				sendEmail(frame)
 				print("done!")
-		except:
-			print("Error sending email: ", sys.exc_info()[0])
+		except Exception as e:
+			print("Error sending email: ", e)
 
 @app.route('/')
 @basic_auth.required
