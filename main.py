@@ -11,7 +11,9 @@ import credentials as creds
 
 email_update_interval = 600 # sends an email only once in this time interval
 video_camera = VideoCamera(flip=True) # creates a camera object, flip vertically
-object_classifier = cv2.CascadeClassifier("models/fullbody_recognition_model.xml") # an opencv classifier
+hog = cv2.HOGDescriptor()
+hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+# object_classifier = cv2.CascadeClassifier("models/fullbody_recognition_model.xml") # an opencv classifier
 
 # App Globals (do not edit)
 app = Flask(__name__)
@@ -26,7 +28,8 @@ def check_for_objects():
 	global last_epoch
 	while True:
 		try:
-			frame, found_obj = video_camera.get_object(object_classifier)
+			# frame, found_obj = video_camera.get_object(object_classifier)
+            frame, found_obj = video_camera.get_object(hog)
 			if found_obj and (time.time() - last_epoch) > email_update_interval:
 				last_epoch = time.time()
 				print("Sending email...")
