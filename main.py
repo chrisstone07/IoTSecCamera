@@ -28,10 +28,10 @@ def check_for_objects():
 	global last_epoch
 	while True:
 		try:
-			# frame, found_obj = video_camera.get_object(object_classifier)
-            frame, found_obj = video_camera.get_object(hog)
+			frame, found_obj = video_camera.get_object(hog)
+            # frame, found_obj = video_camera.get_object(hog)
 			if found_obj and (time.time() - last_epoch) > email_update_interval:
-				last_epoch = time.time()
+			    last_epoch = time.time()
 				print("Sending email...")
 				sendEmail(frame)
 				print("done!")
