@@ -8,7 +8,7 @@ import numpy as np
 class VideoCamera(object):
     def __init__(self, flip = False):
         # self.vs = VideoStream() # Uncomment this line and comment the next line to use usb camera or built in camera's (Laptops)
-        self.vs = PiVideoStream(resolution=(1024, 720)).start() # Change resolution as per need
+        self.vs = PiVideoStream(resolution=(720, 720)).start() # Change resolution as per need
         self.flip = flip
         time.sleep(2.0)
 

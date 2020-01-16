@@ -8,6 +8,19 @@ import time
 #import threading
 import multiprocessing
 import credentials as creds
+import lcd
+import RPi.GPIO as GPIO
+
+# LCD Pins
+D4=6
+D5=13
+D6=19
+D7=26
+RS=20
+EN=21
+mylcd=lcd.lcd()
+mylcd.begin(D4,D5,D6,D7,RS,EN)
+mylcd.Print("Safe: No intruder detected")
 
 email_update_interval = 600 # sends an email only once in this time interval
 video_camera = VideoCamera(flip=True) # creates a camera object, flip vertically
@@ -32,6 +45,12 @@ def check_for_objects():
 				print("Sending email...")
 				sendEmail(frame)
 				print("done!")
+                mylcd.clear()
+                mylcd.Print("Alert! Intruder Detected")
+
+            else:
+                mylcd.clear()
+                mylcd.Print("Safe: No intruder detected")
 		except:
 			print("Error sending email: ", sys.exc_info()[0])
 
