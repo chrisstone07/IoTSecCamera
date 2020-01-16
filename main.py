@@ -45,6 +45,7 @@ def check_for_objects():
 				print("Sending email...")
 				sendEmail(frame)
 				print("done!")
+                #trying to fix indent
                 mylcd.clear()
                 mylcd.Print("Alert! Intruder Detected")
 
