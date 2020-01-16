@@ -36,7 +36,7 @@ class lcd:
 
     def Print(self,text):
         self.__text=str(text)
-	self.__length=len(self.__text)
+	    self.__length=len(self.__text)
         for i in range (0,self.__length):
             self.__a=ord(self.__text[i])
             self.__send_data(self.__a,self.__data)
