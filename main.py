@@ -36,23 +36,23 @@ basic_auth = BasicAuth(app)
 last_epoch = 0
 
 def check_for_objects():
-	global last_epoch
-	while True:
-		try:
-			frame, found_obj = video_camera.get_object(object_classifier)
-			if found_obj and (time.time() - last_epoch) > email_update_interval:
-				last_epoch = time.time()
-				print("Sending email...")
-				sendEmail(frame)
-				print("done!")
+    global last_epoch
+    while True:
+        try:
+            frame, found_obj = video_camera.get_object(object_classifier)
+            if found_obj and (time.time() - last_epoch) > email_update_interval:
+                last_epoch = time.time()
+                print("Sending email...")
+                sendEmail(frame)
+                print("done!")
                 mylcd.clear()
                 mylcd.Print("Alert! Intruder Detected")
 
             else:
-				mylcd.clear()
-				mylcd.Print("Safe: No intruder detected")
-		except:
-				print("Error sending email: ", sys.exc_info()[0])
+                mylcd.clear()
+                mylcd.Print("Safe: No intruder detected")
+        except:
+                print("Error sending email: ", sys.exc_info()[0])
 
 @app.route('/')
 @basic_auth.required
