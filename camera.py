@@ -77,9 +77,9 @@ class VideoCamera(object):
         thresh = cv2.threshold(frameDelta, 5, 255,
             cv2.THRESH_BINARY)[1]
         thresh = cv2.dilate(thresh, None, iterations=2)
-        cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+        cnts, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE)
-        cnts = cnts[0] if imutils.is_cv2() else cnts[1]
+        # cnts = cnts[0] if imutils.is_cv2() else cnts[1]
 
         # loop over the contours
         for c in cnts:
