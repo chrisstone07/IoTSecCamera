@@ -45,13 +45,13 @@ def check_for_objects():
 				print("Sending email...")
 				sendEmail(frame)
 				print("done!")
-                                #trying to fix indent
-                                mylcd.clear()
-                                mylcd.Print("Alert! Intruder Detected")
+                #trying to fix indent
+                mylcd.clear()
+                mylcd.Print("Alert! Intruder Detected")
 
-                        else:
-                                mylcd.clear()
-                                mylcd.Print("Safe: No intruder detected")
+            else:
+                    mylcd.clear()
+                    mylcd.Print("Safe: No intruder detected")
 		except:
 			print("Error sending email: ", sys.exc_info()[0])
 
