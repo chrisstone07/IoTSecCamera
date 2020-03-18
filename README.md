@@ -44,7 +44,7 @@ cd Smart-Security-Camera
 and install the dependencies for the project
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 
@@ -103,3 +103,7 @@ Visit `<raspberrypi_ip>:5000` in your browser to view the stream.
 Note: To view the live stream on a different network than your Raspberry Pi, you can use [ngrok](https://ngrok.com/) to expose a local tunnel. Once downloaded, run ngrok with `./ngrok http 5000` and visit one of the generated links in your browser.
 
 Note: The video stream will not start automatically on startup. To start the video stream automatically, you will need to run the program  from your `/etc/rc.local` file see this [video](https://youtu.be/51dg2MsYHns?t=7m4s) for more information about how to configure that.
+
+## Credits
+
+Credits to [HackerShackOfficial](https://github.com/HackerShackOfficial) for the original code base at [Smart-Security-Camera](https://github.com/HackerShackOfficial/Smart-Security-Camera)
