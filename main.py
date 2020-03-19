@@ -5,8 +5,8 @@ from flask import Flask, render_template, Response
 from camera import VideoCamera
 from flask_basicauth import BasicAuth
 import time
-#import threading
-import multiprocessing
+import threading
+# import multiprocessing
 import credentials as creds
 import lcd
 import RPi.GPIO as GPIO
@@ -71,12 +71,12 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    # t = threading.Thread(target=check_for_objects, args=())
-    # t.daemon = True
-    # t.start()
+    t = threading.Thread(target=check_for_objects, args=())
+    t.daemon = True
+    t.start()
 
-    d = multiprocessing.Process(name='daemon', target=check_for_objects)
-    d.daemon = True
-    d.start()
+    # d = multiprocessing.Process(name='daemon', target=check_for_objects)
+    # d.daemon = True
+    # d.start()
     app.run(host='0.0.0.0', debug=False)
 
