@@ -22,7 +22,7 @@ mylcd=lcd.lcd()
 mylcd.begin(D4,D5,D6,D7,RS,EN)
 mylcd.Print("Safe: No intruder detected")
 
-email_update_interval = 600 # sends an email only once in this time interval
+email_update_interval = 60 # sends an email only once in this time interval
 video_camera = VideoCamera(flip=True) # creates a camera object, flip vertically
 object_classifier = cv2.CascadeClassifier("models/fullbody_recognition_model.xml") # an opencv classifier
 
