@@ -84,11 +84,11 @@ class VideoCamera(object):
                 # as its already used the threshold/(binary image) to find the contours this image/frame is what image it will be drawed on
 
                 text = 'Occupied'
-                found_objects = True
                 # text that appears when there is motion in video feed
             else:
-                found_objects = False
+                pass
 
+        found_objects = True if text == 'Occupied' else False
 
         ''' now draw text and timestamp on security feed '''
         font = cv2.FONT_HERSHEY_SIMPLEX 
